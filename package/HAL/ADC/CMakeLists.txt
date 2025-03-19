@@ -1,4 +1,4 @@
-set(TARGET_NAME ADC)
+set(TARGET_NAME ADC.lib)
 
 add_library(${TARGET_NAME})
 

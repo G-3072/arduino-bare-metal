@@ -1,4 +1,4 @@
-set(TARGET_NAME TIMERS)
+set(TARGET_NAME TIMERS.lib)
 
 add_library(${TARGET_NAME})
 

@@ -1,4 +1,4 @@
-set(TARGET_NAME USART)
+set(TARGET_NAME USART.lib)
 
 add_library(${TARGET_NAME})
 

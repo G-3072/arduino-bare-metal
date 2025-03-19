@@ -1,4 +1,4 @@
-set(TARGET_NAME INTERRUPTS)
+set(TARGET_NAME INTERRUPTS.lib)
 
 add_library(${TARGET_NAME})
 

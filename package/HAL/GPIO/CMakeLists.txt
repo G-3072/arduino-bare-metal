@@ -1,4 +1,4 @@
-set(TARGET_NAME GPIO)
+set(TARGET_NAME GPIO.lib)
 
 add_library(${TARGET_NAME})
 
