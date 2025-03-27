@@ -1,0 +1,18 @@
+{
+    "VsCodeTaskButtons.showCounter": false,
+    "VsCodeTaskButtons.tasks": 
+    [
+        {
+            "label": "Arduino: Build",
+            "alignment": "left",
+            "task": "buildProject",
+            "tooltip": "build proect for atmega328p"
+        },
+        {
+            "label": "Arduino: Upload",
+            "alignment": "left",
+            "task": "upload",
+            "tooltip": "Upload last built executable to arduino"
+        },
+    ]
+}

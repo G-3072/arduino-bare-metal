@@ -39,7 +39,7 @@
                 "-U",
                 "flash:w:/home/gasc/work/arduino/arduino-bare-metal/build/package/main/arduino-bare-metal.hex:i"
             ],
-            "dependsOn": ["buildProject"]
+            // "dependsOn": ["buildProject"]
 
         },
     ]

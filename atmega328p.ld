@@ -6,6 +6,8 @@ MEMORY
     FLASH (rx)  :   ORIGIN = 0x000000, LENGTH = 32K     /* Flash memory, 32KB word addressed --> 16K * 16bit, offset = 0x0 */
     EEPROM (rw) :   ORIGIN = 0x810000, LENGTH = 1K      /* EEPROM memory, 1KB, (Byte addressed) , offset = 0x810000 */
 }
+
+__ram_end = ORIGIN(RAM) + LENGTH(RAM);
 /*
     offsets for RAM and EEPROM because gcc compiles for devices with one address space (0x0 --> 0xN). but AVR has Multiple addressing spaces (FLASH, RAM, EEPROM)
     so gcc can create an ELF file.
@@ -30,7 +32,7 @@ SECTIONS
         . = ALIGN(2);       
         __text_end = .;     /*sets the __text_end symbol to current value of location counter --> end of text section*/
     } > FLASH
-
+    __data_LMA = LOADADDR(.data);
     .data :
     {
         . = ALIGN(2);
