@@ -4,7 +4,7 @@ add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
     src/main.c
-    src/startup_ATMega328p.S
+    src/atmega328p_startup.S
 )
 
 target_link_libraries(${TARGET_NAME} PRIVATE

@@ -25,9 +25,9 @@ SECTIONS
     {
         . = ALIGN(2);
 
-        KEEP(*(.isr_vector))
+        *(.isr_vector)
 
-        .= ALIGN(2); 
+        . = ALIGN(2); 
     } >FLASH
 
     .text :

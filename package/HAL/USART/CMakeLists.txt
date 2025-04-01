@@ -3,7 +3,7 @@ set(TARGET_NAME USART.lib)
 add_library(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PUBLIC
-    
+    src/USART.c
 )
 
 target_include_directories(${TARGET_NAME} PUBLIC
