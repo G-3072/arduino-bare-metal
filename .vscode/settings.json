@@ -8,6 +8,11 @@
             "tooltip": "build proect for atmega328p"
         },
         {
+            "label": "Arduino: Rebuild",
+            "alignment": "left",
+            "task": "rebuild",
+        },
+        {
             "label": "Arduino: Upload work PC",
             "alignment": "left",
             "task": "upload",
@@ -19,5 +24,6 @@
             "task": "upload 2",
             "tooltip": "Upload last built executable to arduino"
         },
+
     ]
 }

@@ -7,7 +7,7 @@ MEMORY
     EEPROM (rw) :   ORIGIN = 0x810000, LENGTH = 1K      /* EEPROM memory, 1KB, (Byte addressed) , offset = 0x810000 */
 }
 
-__ram_end = ORIGIN(RAM) + LENGTH(RAM);
+__ram_end = ORIGIN(RAM) + LENGTH(RAM) - 1;
 /*
     offsets for RAM and EEPROM because gcc compiles for devices with one address space (0x0 --> 0xN). but AVR has Multiple addressing spaces (FLASH, RAM, EEPROM)
     so gcc can create an ELF file.
@@ -21,22 +21,14 @@ SECTIONS
         .text section contains code / instructions for the cpu to execute.
         at the start of text section is vector table because Reset_Handler / startup code needs to be at address 0x0
     */
-    .isr_vector :
-    {
-        . = ALIGN(2);
-
-        *(.isr_vector)
-
-        . = ALIGN(2); 
-    } >FLASH
-
     .text :
     {
         . = ALIGN(2);       /* Aligning Location pointer to 2Bytes */
         __text_start = .;   /* sets the __text_start symbol to current value of location counter --> start of text section (VMA)*/
 
+        KEEP(.isr_vector);
         *(.text)            /* tells linker to put all .text sections of all object files here */
-
+        
         . = ALIGN(2);       
         __text_end = .;     /*sets the __text_end symbol to current value of location counter --> end of text section*/
     } > FLASH
@@ -62,8 +54,16 @@ SECTIONS
         . = ALIGN(2);
         __bss_end = .;
     } > RAM
+}
 
-    .rodata : 
+
+/*
+    . is the location counter in linker scripts, it is the currten place in memory where stuff gets placed. 
+    eg: . is 0x800100 and .data section is defined without giving a specifc addres means it gets placed at 0x800100
+        and if .data size is 0x100 means the next section gets placed at 0x800100 + 0x100 = 0x800200
+
+
+        .rodata : 
     {
         . = ALIGN(2);
 
@@ -71,12 +71,6 @@ SECTIONS
 
         . = ALIGN(2);
     } > FLASH
-}
-
-/*
-    . is the location counter in linker scripts, it is the currten place in memory where stuff gets placed. 
-    eg: . is 0x800100 and .data section is defined without giving a specifc addres means it gets placed at 0x800100
-        and if .data size is 0x100 means the next section gets placed at 0x800100 + 0x100 = 0x800200
-
+    
     
 */

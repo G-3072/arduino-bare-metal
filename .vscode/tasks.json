@@ -39,7 +39,7 @@
                 "-U",
                 "flash:w:/home/gasc/work/arduino/arduino-bare-metal/build/package/main/arduino-bare-metal.hex:i"
             ],
-            
+            "dependsOn": "buildProject"
 
         },
         {
@@ -48,7 +48,7 @@
             "command": "/mnt/c/Users/gaude/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude.exe",
             "args": [
                 "-C",
-                "/home/gasc/dev/arduino/arduino-bare-metal/avrdude.conf",
+                "/home/gasc/dev/arduino-bare-metal/avrdude.conf",
                 "-v",
                 "-p",
                 "atmega328p",
@@ -59,8 +59,25 @@
                 "-b",
                 "115200",
                 "-U",
-                "flash:w:/home/gasc/dev/arduino/arduino-bare-metal/build/package/main/arduino-bare-metal.hex:i"
+                "flash:w:/home/gasc/dev/arduino-bare-metal/build/package/main/arduino-bare-metal.hex:i"
             ],
+            "dependsOn": "buildProject"
+        },
+        {
+            "label": "rebuild",
+            "dependsOn":[
+                "remove build",
+                "buildProject"
+            ]
+        },
+        {
+            "label": "remove build",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "build"
+            ]
         }
     ]
 }

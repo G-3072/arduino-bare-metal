@@ -1,8 +1,8 @@
-.global __isr_vectors    ; make the vector table a global variable
-.global main
+; .global __isr_vectors    ; make the vector table a global variable
 
-.section .isr_vector, "a", @progbits    ; "a" = allocatble -> gets assigned space in final exec, @progbits = 
-.type __isr_vectors, @object             ; declares vector table as object (var / struct) instead of func
+.global main
+.global Reset_Handler
+
 
 ; Linker symbols 
 .word __data_start
@@ -14,10 +14,12 @@
 
 .word __ram_end
 
-.org 0x0000                 ; make sure vector table starts at address 0x0000
-__isr_vectors:
-    rjmp Reset_Handler      ; jump to reset Handler
-    rjmp
+.section .isr_vector, "a", @progbits    ; "a" = allocatble -> gets assigned space in final exec, @progbits = 
+    .org 0x0000
+    rjmp Reset_Handler
+    rjmp INT0_isr
+    rjmp INT1_isr
+    ; add rest of vectors
 
 
 Reset_Handler:
@@ -32,7 +34,7 @@ Reset_Handler:
     rcall clear_bss
 
     ; call main function
-    call main
+    rcall main
 
 
 copy_data:

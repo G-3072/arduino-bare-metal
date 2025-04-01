@@ -4,7 +4,8 @@
         {
             "name": "arduino-bare-metal",
             "includePath": [
-                "/usr/lib/avr/include"
+                "/usr/lib/avr/include",
+                "/usr/lib/avr/include/avr/"
             ]
         }
     ]
