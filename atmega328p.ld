@@ -21,18 +21,26 @@ SECTIONS
         .text section contains code / instructions for the cpu to execute.
         at the start of text section is vector table because Reset_Handler / startup code needs to be at address 0x0
     */
+    .isr_vector :
+    {
+        . = ALIGN(2);
+
+        KEEP(*(.isr_vector))
+
+        .= ALIGN(2); 
+    } >FLASH
+
     .text :
     {
         . = ALIGN(2);       /* Aligning Location pointer to 2Bytes */
-        __text_start = .;   /* sets the __text_start symbol to current value of location counter --> start of text section*/
+        __text_start = .;   /* sets the __text_start symbol to current value of location counter --> start of text section (VMA)*/
 
-        KEEP(.isr_vector)   /* Makes sure the .isr_vector (vector table) isnt removed*/
         *(.text)            /* tells linker to put all .text sections of all object files here */
 
         . = ALIGN(2);       
         __text_end = .;     /*sets the __text_end symbol to current value of location counter --> end of text section*/
     } > FLASH
-    __data_LMA = LOADADDR(.data);
+    __data_LMA = LOADADDR(.data); /* gives the byte address of data section in Flash memory (LMA)*/
     .data :
     {
         . = ALIGN(2);
