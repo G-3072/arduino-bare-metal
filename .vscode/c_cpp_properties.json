@@ -3,9 +3,11 @@
     "configurations": [
         {
             "name": "arduino-bare-metal",
+            "intelliSenseMode": "gcc-x86",
+            "compilerPath": "/usr/bin/avr-gcc",
+            "cStandard": "c11",
             "includePath": [
-                "/usr/lib/avr/include",
-                "/usr/lib/avr/include/avr/"
+                "package/HAL/**"
             ]
         }
     ]

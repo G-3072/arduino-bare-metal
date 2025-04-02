@@ -76,8 +76,17 @@
             "command": "rm",
             "args": [
                 "-rf",
-                "build"
-            ]
+                "build/*"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
         }
     ]
 }

@@ -3,8 +3,8 @@ set(TARGET_NAME arduino-bare-metal)
 add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
-    src/atmega328p_startup.S
     src/main.c
+    # src/atmega328p_startup.S
 )
 
 target_link_libraries(${TARGET_NAME} PRIVATE
