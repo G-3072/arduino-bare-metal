@@ -11,7 +11,7 @@ void main(void){
     while(1){
         PINB |= (1 << 5);
 
-        _delay_ms(1000);
+        _delay_ms(100);
     }
 
 }
