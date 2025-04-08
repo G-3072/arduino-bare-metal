@@ -7,3 +7,4 @@ message(STATUS ${CMAKE_VERSION})
 include(cmake/avr-gcc.cmake)
 
 add_subdirectory(package)
+add_subdirectory(tests)

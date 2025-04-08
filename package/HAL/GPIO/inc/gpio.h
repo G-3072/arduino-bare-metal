@@ -25,7 +25,32 @@ typedef struct{
 #define GPIOC ((GPIO_Port *)0x26)
 #define GPIOD ((GPIO_Port *)0x29)
 
-#define PB0 ((GPIO_Pin *))
+#define PB0 ((GPIO_Pin *) {GPIOB, 0})
+#define PB1 ((GPIO_Pin *) {GPIOB, 1})
+#define PB2 ((GPIO_Pin) {GPIOB, 2})
+#define PB3 ((GPIO_Pin) {GPIOB, 3})
+#define PB4 ((GPIO_Pin) {GPIOB, 4})
+#define PB5 ((GPIO_Pin) {GPIOB, 5})
+#define PB6 ((GPIO_Pin) {GPIOB, 6})
+#define PB7 ((GPIO_Pin) {GPIOB, 7})
+
+#define PC0 ((GPIO_Pin) {GPIOC, 0})
+#define PC1 ((GPIO_Pin) {GPIOC, 1})
+#define PC2 ((GPIO_Pin) {GPIOC, 2})
+#define PC3 ((GPIO_Pin) {GPIOC, 3})
+#define PC4 ((GPIO_Pin) {GPIOC, 4})
+#define PC5 ((GPIO_Pin) {GPIOC, 5})
+#define PC6 ((GPIO_Pin) {GPIOC, 6})
+
+#define PD0 ((GPIO_Pin) {GPIOD, 0})
+#define PD1 ((GPIO_Pin) {GPIOD, 1})
+#define PD2 ((GPIO_Pin) {GPIOD, 2})
+#define PD3 ((GPIO_Pin) {GPIOD, 3})
+#define PD4 ((GPIO_Pin) {GPIOD, 4})
+#define PD5 ((GPIO_Pin) {GPIOD, 5})
+#define PD6 ((GPIO_Pin) {GPIOD, 6})
+#define PD7 ((GPIO_Pin) {GPIOD, 7})
+
 
 void GPIO_setPinMode(GPIO_Pin *pin, uint8_t mode);
 void GPIO_setPinPull(GPIO_Pin *pin, uint8_t pull);
