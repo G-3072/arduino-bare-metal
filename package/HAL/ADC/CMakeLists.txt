@@ -3,7 +3,7 @@ set(TARGET_NAME ADC.lib)
 add_library(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PUBLIC
-    src/ADC.c
+    src/adc.c
 )
 
 target_include_directories(${TARGET_NAME} PUBLIC

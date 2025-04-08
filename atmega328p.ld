@@ -31,7 +31,7 @@ SECTIONS
         *(.data)
         *(.data.*)
 
-        *(.rodata)
+        *(.rodata)          /* in data section because its said to put here in avr5.x */
         *(.rodata*)
 
         . = ALIGN(2);

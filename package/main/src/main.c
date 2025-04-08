@@ -1,17 +1,19 @@
-#include <avr/io.h>
 #include <util/delay.h>
-
+#include <gpio.h>
 
 
 void main(void){
 
-    DDRB |= (1 << 5);
-    PORTB &= ~(1<<5);
+    GPIO_Pin PB5;
+    PB5.number = 5;
+    PB5.port = GPIOB;
+
+    GPIO_setPinMode(&PB5, OUTPUT);
 
     while(1){
-        PINB |= (1 << 5);
+        
+        GPIO_togglePin(&PB5);
 
-        _delay_ms(100);
     }
 
 }
