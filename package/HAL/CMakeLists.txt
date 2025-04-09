@@ -5,6 +5,7 @@ add_subdirectory(GPIO)
 add_subdirectory(interrupts)
 add_subdirectory(timers)
 add_subdirectory(USART)
+add_subdirectory(util)
 
 add_library(${TARGET_NAME})
 

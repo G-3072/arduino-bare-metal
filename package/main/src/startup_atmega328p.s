@@ -18,9 +18,9 @@ __vectors:                      ; vector table
     rjmp TIM1_COMPA_isr
     rjmp TIM1_COMPB_isr
     rjmp TIM1_OVF_isr
-    rjmp TIM0_OVF_isr
     rjmp TIM0_COMPA_isr
     rjmp TIM0_COMPB_isr
+    rjmp TIM0_OVF_isr
     rjmp SPI_STC_isr
     rjmp USART_RX_isr
     rjmp USART_UDRE_isr
