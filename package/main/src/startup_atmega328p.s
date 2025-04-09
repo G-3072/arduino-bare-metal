@@ -33,12 +33,12 @@ __vectors:                      ; vector table
 
 .section .text, "ax"        ; "ax" = a: section is allocatable x: contains executable code
 
-.word _sdata                ; .data section starting address in RAM (VMA)
-.word _edata                ; .data section ending address in RAM (VMA)
-.word _sidata               ; .data section starting address in FLASH (LMA)
+.word __data_start                ; .data section starting address in RAM (VMA)
+.word __data_end                ; .data section ending address in RAM (VMA)
+.word __data_load_start               ; .data section starting address in FLASH (LMA)
 
-.word _sbss                 ; .bss section start address in RAM
-.word _ebss                 ; .bss section end address in RAM
+.word __bss_start                 ; .bss section start address in RAM
+.word __bss_end                 ; .bss section end address in RAM
 
 .global main                ; declare main function as global
 .weak main                  ; decalre main function as weak so it is overwritten by user
@@ -54,14 +54,14 @@ Reset_Handler:
     out SPH, r17            ; transfer value from r17 to SPL
 
     copyDataSection:
-    ldi r30, lo8(_sidata)      ; store data load Memory Address in Z register (FLash address)
-    ldi r31, hi8(_sidata)
+    ldi r30, lo8(__data_load_start)      ; store data load Memory Address in Z register (FLash address)
+    ldi r31, hi8(__data_load_start)
 
-    ldi r26, lo8(_sdata)        ; store data virtual memory address in X register (Ram Address)
-    ldi r27, hi8(_sdata)
+    ldi r26, lo8(__data_start)        ; store data virtual memory address in X register (Ram Address)
+    ldi r27, hi8(__data_start)
 
-    ldi r28, lo8(_edata)        ; store data section end address (RAM)  in Y register
-    ldi r29, hi8(_edata)
+    ldi r28, lo8(__data_end)        ; store data section end address (RAM)  in Y register
+    ldi r29, hi8(__data_end)
 
     copyDataLoop:
     cp r26, r28                 ; compare low bytes of values -> r26 - r28 -> if r26 < 28 Carry flage set
@@ -77,11 +77,11 @@ Reset_Handler:
     rjmp copyDataLoop           ; jump back to start of loop
 
     zeroBssSection:             ; zero out the .bss section in Ram
-    ldi r26, lo8(_sbss)         ; store bss start address in X register
-    ldi r27, hi8(_sbss)
+    ldi r26, lo8(__bss_start)         ; store bss start address in X register
+    ldi r27, hi8(__bss_start)
 
-    ldi r28, lo8(_ebss)         ; store bss end address in Y register
-    ldi r29, hi8(_ebss)
+    ldi r28, lo8(__bss_end)         ; store bss end address in Y register
+    ldi r29, hi8(__bss_end)
 
     ldi r16, 0x00               ; load 0 int r16
 

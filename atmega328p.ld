@@ -11,6 +11,7 @@ SECTIONS
 {
     .text :
     {
+        __text_start = .;
         *(.vectors)
         KEEP(*(.vectors))
 
@@ -20,13 +21,14 @@ SECTIONS
         *(.text*)
 
         . = ALIGN(2);
+        __text_end = .;
     } > FLASH
 
     .data :
     {
-        _sidata = LOADADDR(.data);
+        __data_load_start = LOADADDR(.data);  /* symbols needed for compiler optimizations */
         . = ALIGN(2);
-        _sdata = .;
+        __data_start = .;   /* symbols needed for compiler optimizations */
 
         *(.data)
         *(.data.*)
@@ -35,19 +37,19 @@ SECTIONS
         *(.rodata*)
 
         . = ALIGN(2);
-        _edata = .;
+        __data_end = .;     /* symbols needed for compiler optimizations */
     } >RAM AT> FLASH
 
     .bss : 
     {
         . = ALIGN(2);
-        _sbss = .;
+        __bss_start = .;
 
         *(.bss)
         *(.bss*)
         *(COMMON)
 
         . = ALIGN(2);
-        _ebss = .;
+        __bss_end = .;
     } > RAM
 }
