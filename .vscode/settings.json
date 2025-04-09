@@ -27,7 +27,8 @@
     ],
     "files.associations": {
         "io.h": "c",
-        "iom328p.h": "c"
+        "iom328p.h": "c",
+        "gpio.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

@@ -7,28 +7,12 @@
 
 void main(void){
 
-    TCCR1B |= (1<<0);
-
-    uint16_t start, end = 0;
-
-    GPIO_setPinMode(&PB5, OUTPUT);
-
-    TCNT1 = 0;
-    start = TCNT1;
-    GPIO_togglePin(&PB5);
-    end = TCNT1;
-
-    uint16_t time = (end - start) * 62.5F;
+    GPIO_setPinMode(GPIOB, 5, OUTPUT);
 
     while(1){
         
-        if (time == 3562){
-            GPIO_writePin(&PB5, 1);
-        }else{
-            GPIO_writePin(&PB5, 0);
-
-        }
-
+        GPIO_togglePin(GPIOB, 5);
+        _delay_ms(250);
     }
 
 }

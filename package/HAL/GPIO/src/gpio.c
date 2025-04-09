@@ -2,41 +2,41 @@
 
 #define MCUCR (*(uint8_t *)0x35)
 
-void GPIO_setPinMode(GPIO_Pin *pin, uint8_t mode){
+void GPIO_setPinMode(GPIO_Port *port,  uint8_t pin, uint8_t mode){
     if(mode != 0){
-        pin->port->DDR |= (1<<pin->number);
+        port->DDR |= (1<<pin);
     }else{
-        pin->port->DDR &= ~(1<<pin->number);
+        port->DDR &= ~(1<<pin);
     }
 }
 
-void GPIO_setPinPull(GPIO_Pin *pin, uint8_t pull){
+void GPIO_setPinPull(GPIO_Port *port,  uint8_t pin, uint8_t pull){
     MCUCR &= ~(1<<4);       
 
     if (pull != 0){
-        pin->port->PORT |= (1<<pin->number);
+        port->PORT |= (1<<pin);
     }else{
-        pin->port->PORT &= ~(1<<pin->number);
+        port->PORT &= ~(1<<pin);
     }
 }
 
-void GPIO_writePin(GPIO_Pin *pin, uint8_t value){
+void GPIO_writePin(GPIO_Port *port,  uint8_t pin, uint8_t value){
     if (value != 0){
-        pin->port->PORT |= (1<<pin->number);
+        port->PORT |= (1<<pin);
     }else{
-        pin->port->PORT &= ~(1<<pin->number);
+        port->PORT &= ~(1<<pin);
     }
 }
 
-void GPIO_togglePin(GPIO_Pin *pin){
-    pin->port->PIN = (1<<pin->number);
+void GPIO_togglePin(GPIO_Port *port,  uint8_t pin){
+    port->PIN = (1<<pin);
 }
 
-uint8_t GPIO_readPin(GPIO_Pin *pin){
-    uint8_t pinVal = pin->port->PIN;
+uint8_t GPIO_readPin(GPIO_Port *port,  uint8_t pin){
+    uint8_t pinVal = port->PIN;
 
-    pinVal &= (1<<pin->number);
-    pinVal >>= pin->number;
+    pinVal &= (1<<pin);
+    pinVal >>= pin;
     
     return pinVal;
 }
