@@ -1,9 +1,8 @@
 #include <util/delay.h>
 // #include <avr/io.h>
 #include <gpio.h>
+#include <gpio_time_test.h>
 
-#define TCCR1B (*(uint8_t *) 0x81)
-#define TCNT1 (*(uint16_t *) 0x84)
 
 void main(void){
 
