@@ -1,9 +1,9 @@
-set(TARGET_NAME GPIO_TEST)
+set(TARGET_NAME GPIO_TEST.lib)
 
 add_library(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PUBLIC
-    src/gpio_time_test.c
+    src/gpio_test.c
 )
 
 target_include_directories(${TARGET_NAME} PUBLIC
