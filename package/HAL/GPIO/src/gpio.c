@@ -23,7 +23,7 @@ void GPIO_setPinMode(GPIO_Port *port,  uint8_t pin, uint8_t mode){
  * @param pull 
  */
 void GPIO_setPinPull(GPIO_Port *port,  uint8_t pin, uint8_t pull){
-    MCUCR &= ~(1<<4);       
+    MCUCR &= ~(1<<4);
 
     if (pull != 0){
         port->PORT |= (1<<pin);
@@ -85,6 +85,8 @@ void GPIO_setPortMode(GPIO_Port *port, uint8_t mode){
  * @param pull 
  */
 void GPIO_setPortPull(GPIO_Port *port, uint8_t pull){
+    MCUCR &= ~(1<<4);
+
     port->PORT = pull;
 }
 /**

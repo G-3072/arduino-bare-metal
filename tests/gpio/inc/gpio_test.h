@@ -3,22 +3,19 @@
 
 #include <gpio.h>
 
-#define TCCR1B (*(uint8_t *) 0x81)
-#define TCNT1 (*(uint16_t *) 0x84)
+void test_gpio_writePin_time();     //passed
+void test_gpio_togglePin_time();    //passed
+void test_gpio_readPin_time();      //passed
 
-void test_gpio_write_speed();
-void test_gpio_toggle_speed();
-void test_gpio_read_speed();
+void test_gpio_writePort_time();    //passed
+void test_gpio_readPort_time();     //passed
 
-void test_gpio_port_write_speed();
-void test_gpio_port_read_speed();
+void test_gpio_readPin_value();     //passed
+void test_gpio_readPort_value();    //passed
 
-void test_gpio_readPin_value();
-void test_gpio_readPort_value();
-
-void test_gpio_writePin_value();
-void test_gpio_togglePin_value();
-void test_gpio_writePort_value();
+void test_gpio_writePin_value();    //passed
+void test_gpio_togglePin_value();   //passed
+void test_gpio_writePort_value();   //passed
 
 
 #endif

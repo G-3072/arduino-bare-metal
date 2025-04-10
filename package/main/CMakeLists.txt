@@ -9,7 +9,7 @@ target_sources(${TARGET_NAME} PRIVATE
 
 target_link_libraries(${TARGET_NAME} PRIVATE
     HAL.lib
-    # GPIO_TEST.lib
+    GPIO_TEST.lib
 )
 
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
