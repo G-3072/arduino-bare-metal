@@ -1,8 +1,8 @@
 set(TARGET_NAME INTERRUPTS.lib)
 
-add_library(${TARGET_NAME})
+add_library(${TARGET_NAME} STATIC)
 
-target_sources(${TARGET_NAME} PUBLIC
+target_sources(${TARGET_NAME} PRIVATE
     src/interrupt.c
 )
 
@@ -12,4 +12,5 @@ target_include_directories(${TARGET_NAME} PUBLIC
 
 target_link_libraries(${TARGET_NAME} PUBLIC
     UTILITY.lib
+    GPIO.lib
 )

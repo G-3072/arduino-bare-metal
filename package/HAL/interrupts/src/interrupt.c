@@ -1,32 +1,36 @@
 #include <interrupt.h>
 #include <registers.h>
 
-static FuncPtr interrupts[25] = {
-    INT0_isr,
-    INT1_isr,
-    PCINT0_isr,
-    PCINT1_isr,
-    PCINT2_isr,
-    WDT_isr,
-    TIM2_COMPA_isr,
-    TIM2_COMPB_isr,
-    TIM2_OVF_isr,
-    TIM1_CAPT_isr,
-    TIM1_COMPA_isr,
-    TIM1_COMPB_isr,
-    TIM1_OVF_isr,
-    TIM0_COMPA_isr,
-    TIM0_COMPB_isr,
-    TIM0_OVF_isr,
-    SPI_STC_isr,
-    USART_RX_isr,
-    USART_UDRE_isr,
-    USART_TX_isr,
-    ADC_isr,
-    EE_READY_isr,
-    AN_COMP_isr,
-    TWI_isr,
-    SPM_READY_isr
+void default_handler(){             // default handler that does nothing
+    return;
+}
+
+static FuncPtr interrupts[25] = {   
+    default_handler,                //at the beginning only default handler so no UB or infinite recursion.
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
 };
 
 /**
@@ -375,3 +379,4 @@ void TWI_isr(){
 void SPM_READY_isr(){
     interrupts[24]();
 }
+
