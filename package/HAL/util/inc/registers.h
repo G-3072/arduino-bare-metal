@@ -99,13 +99,15 @@
 #define OSCAL   (*(uint8_t *)0x66)
 
 // ADC registers
-#define ADCL   (*(uint8_t *)0x78)
-#define ADCH   (*(uint8_t *)0x79)
-#define ADC    (*(uint16_t *)0x78)
+#define ADCL    (*(uint8_t *)0x78)
+#define ADCH    (*(uint8_t *)0x79)
+#define ADC     (*(uint16_t *)0x78)
 
-#define ADCSRA (*(uint8_t *)0x7A)
-#define ADCSRB (*(uint8_t *)0x7B)
-#define ADMUX  (*(uint8_t *)0x7C)
+#define ADCSRA  (*(uint8_t *)0x7A)
+#define ADCSRB  (*(uint8_t *)0x7B)
+#define ADMUX   (*(uint8_t *)0x7C)
+
+#define ACSR    (*(uint8_t *)0x50)
 
 #define DIDR0   (*(uint8_t *)0x7E)
 #define DIDR1   (*(uint8_t *)0x7F)
@@ -120,14 +122,13 @@
 
 //USART registers
 #define UCSR0A    (*(uint8_t *)0xC0)
-#define UCSR0A    (*(uint8_t *)0xC1)
-#define UCSR0A    (*(uint8_t *)0xC2)
+#define UCSR0B    (*(uint8_t *)0xC1)
+#define UCSR0C    (*(uint8_t *)0xC2)
 
 #define UBRR0L    (*(uint8_t *)0xC4)
 #define UBRR0H    (*(uint8_t *)0xC5)
 #define UBRR0     (*(uint16_t *)0xC4)
 
 #define UDR0    (*(uint8_t *)0xC6)
-
 
 #endif

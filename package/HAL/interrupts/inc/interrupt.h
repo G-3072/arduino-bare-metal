@@ -38,9 +38,11 @@ void interruptAttach(FuncPtr function, uint8_t interrupt);
 void enableGlobalInterrupts();
 void disableGlobalInterrupts();
 
-void setInterrupt(uint8_t interrupt, uint8_t enable);
+void enableInterrupt(uint8_t interrupt);
+void disableInterrupt(uint8_t interrupt);
+
     
-FuncPtr interrupts[25] = {
+static FuncPtr interrupts[25] = {
     INT0_isr,
     INT1_isr,
     PCINT0_isr,
@@ -66,6 +68,34 @@ FuncPtr interrupts[25] = {
     AN_COMP_isr,
     TWI_isr,
     SPM_READY_isr
+};
+
+static enum interrupt_numbers{
+    INT0 = 0,
+    INT1,
+    PCINT0,
+    PCINT1,
+    PCINT2,
+    WDT,
+    TIM2_COMPA,
+    TIM2_COMPB,
+    TIM2_OVF,
+    TIM1_CAPT,
+    TIM1_COMPA,
+    TIM1_COMPB,
+    TIM1_OVF,
+    TIM0_COMPA,
+    TIM0_COMPB,
+    TIM0_OVF,
+    SPI_STC,
+    USART_RX,
+    USART_UDRE,
+    USART_TX,
+    ADCINT,
+    EE_READY,
+    AN_COMP,
+    TWI,
+    SPM_READY
 };
 
 #endif
