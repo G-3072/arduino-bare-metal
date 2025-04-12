@@ -7,4 +7,4 @@ project(arduino-bare-metal VERSION 1.0 LANGUAGES C ASM)
 message(STATUS ${CMAKE_VERSION})
 
 add_subdirectory(package)
-# add_subdirectory(tests)
+add_subdirectory(tests)

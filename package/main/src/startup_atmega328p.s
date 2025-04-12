@@ -31,6 +31,84 @@ __vectors:                      ; vector table
     rjmp TWI_isr
     rjmp SPM_READY_isr
 
+.global default_handler
+.weak default_handler
+
+.weak INT0_isr
+.global INT0_isr
+
+.weak INT1_isr
+.global INT1_isr
+
+.weak PCINT0_isr
+.global PCINT0_isr
+
+.weak PCINT1_isr
+.global PCINT1_isr
+
+.weak PCINT2_isr
+.global PCINT2_isr
+
+.weak WDT_isr
+.global WDT_isr
+
+.weak TIM2_COMPA_isr
+.global TIM2_COMPA_isr
+
+.weak TIM2_COMPB_isr
+.global TIM2_COMPB_isr
+
+.weak TIM2_OVF_isr
+.global TIM2_OVF_isr
+
+.weak TIM1_CAPT_isr
+.global TIM1_CAPT_isr
+
+.weak TIM1_COMPA_isr
+.global TIM1_COMPA_isr
+
+.weak TIM1_COMPB_isr
+.global TIM1_COMPB_isr
+
+.weak TIM1_OVF_isr
+.global TIM1_OVF_isr
+
+.weak TIM0_COMPA_isr
+.global TIM0_COMPA_isr
+
+.weak TIM0_COMPB_isr
+.global TIM0_COMPB_isr
+
+.weak TIM0_OVF_isr
+.global TIM0_OVF_isr
+
+.weak SPI_STC_isr
+.global SPI_STC_isr
+
+.weak USART_RX_isr
+.global USART_RX_isr
+
+.weak USART_UDRE_isr
+.global USART_UDRE_isr
+
+.weak USART_TX_isr
+.global USART_TX_isr
+
+.weak ADC_isr
+.global ADC_isr
+
+.weak EE_READY_isr
+.global EE_READY_isr
+
+.weak AN_COMP_isr
+.global AN_COMP_isr
+
+.weak TWI_isr
+.global TWI_isr
+
+.weak SPM_READY_isr
+.global SPM_READY_isr
+
 .section .text, "ax"        ; "ax" = a: section is allocatable x: contains executable code
 
 .word __data_start                ; .data section starting address in RAM (VMA)
@@ -111,114 +189,3 @@ Reset_Handler:
     
     infiniteLoop:               ; infinite loop to catch program should it return from main
     rjmp infiniteLoop
-
-
-
-;-------------------------------------------------------------------------------------------------------------------------
-;                                             ISR weak function definitions
-;-------------------------------------------------------------------------------------------------------------------------
-.global default_handler
-.weak default_handler
-default_handler:
-    
-    rjmp default_handler    ; infinite loop to make sure program doesnt do upredictable stuff
-
-.weak INT0_isr
-INT0_isr:
-    rjmp default_handler
-
-.weak INT1_isr
-INT1_isr:
-    rjmp default_handler
-
-.weak PCINT0_isr
-PCINT0_isr:
-    rjmp default_handler
-
-.weak PCINT1_isr
-PCINT1_isr:
-    rjmp default_handler
-
-.weak PCINT2_isr
-PCINT2_isr:
-    rjmp default_handler
-
-.weak WDT_isr
-WDT_isr:
-    rjmp default_handler
-
-.weak TIM2_COMPA_isr
-TIM2_COMPA_isr:
-    rjmp default_handler
-
-.weak TIM2_COMPB_isr
-TIM2_COMPB_isr:
-    rjmp default_handler
-
-.weak TIM2_OVF_isr
-TIM2_OVF_isr:
-    rjmp default_handler
-
-.weak TIM1_CAPT_isr
-TIM1_CAPT_isr:
-    rjmp default_handler
-
-.weak TIM1_COMPA_isr
-TIM1_COMPA_isr:
-    rjmp default_handler
-
-.weak TIM1_COMPB_isr
-TIM1_COMPB_isr:
-    rjmp default_handler
-
-.weak TIM1_OVF_isr
-TIM1_OVF_isr:
-    rjmp default_handler
-
-.weak TIM0_COMPA_isr
-TIM0_COMPA_isr:
-    rjmp default_handler
-
-.weak TIM2_COMPB_isr
-TIM0_COMPB_isr:
-    rjmp default_handler
-
-.weak TIM2_OVF_isr
-TIM0_OVF_isr:
-    rjmp default_handler
-
-.weak SPI_STC_isr
-SPI_STC_isr:
-    rjmp default_handler
-
-.weak USART_RX_isr
-USART_RX_isr:
-    rjmp default_handler
-
-.weak USART_UDRE_isr
-USART_UDRE_isr:
-    rjmp default_handler
-
-.weak USART_TX_isr
-USART_TX_isr:
-    rjmp default_handler
-
-.weak ADC_isr
-ADC_isr:
-    rjmp default_handler
-
-.weak EE_READY_isr
-EE_READY_isr:
-    rjmp default_handler
-
-.weak AN_COMP_isr
-AN_COMP_isr:
-    rjmp default_handler
-
-.weak TWI_isr
-TWI_isr:
-    rjmp default_handler
-
-.weak SPM_READY_isr
-SPM_READY_isr:
-    rjmp default_handler
