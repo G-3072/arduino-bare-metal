@@ -1,167 +1,141 @@
 #include <interrupt.h>
 #include <registers.h>
-/**
- * @brief 
- * 
- */
-void enableGlobalInterrupts(){
-    SREG |= (1<<7);
-}
-/**
- * @brief 
- * 
- */
-void disableGlobalInterrupts(){
-    SREG &= ~(1<<7);
-}
-/**
- * @brief
- * 
- * @param function 
- * @param interrupt 
- */
-void interruptAttach(FuncPtr function, uint8_t interrupt){
-    interrupts[interrupt] = function;
-}
-/**
- * @brief 
- * 
- * @param port 
- * @param pin 
- */
-void enablePinChangeInterrupt(GPIO_Port *port, uint8_t pin){
-    if(port == GPIOB){
-        PCMSK0 |= (1<<pin);
-    }else if(port == GPIOC){
-        PCMSK1 |= (1<<pin);
-    }else if (port == GPIOD){
-        PCMSK2 |= (1<<pin);
-    }
-}
-/**
- * @brief 
- * 
- * @param port 
- * @param pin 
- */
-void disablePinChangeInterrupt(GPIO_Port *port, uint8_t pin){
-    if(port == GPIOB){
-        PCMSK0 &= ~(1<<pin);
-    }else if(port == GPIOC){
-        PCMSK1 &= ~(1<<pin);
-    }else if (port == GPIOD){
-        PCMSK2 &= ~(1<<pin);
-    }
-}
-void default_handler(){             // default handler that does nothing
-    return;
-}
 
-/**
- * @brief 
- * 
- */
-static FuncPtr interrupts[25] = {   
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
-    default_handler,
+#pragma GCC diagnostic ignored "-Wmisspelled-isr"
+
+
+void INT0_handler(void) __attribute__((signal));
+void INT1_handler(void) __attribute__((signal));
+void PCINT0_handler(void) __attribute__((signal));
+void PCINT1_handler(void) __attribute__((signal));
+void PCINT2_handler(void) __attribute__((signal));
+void WDT_handler(void) __attribute__((signal));
+void TIM2_COMPA_handler(void) __attribute__((signal));
+void TIM2_COMPB_handler(void) __attribute__((signal));
+void TIM2_OVF_handler(void) __attribute__((signal));
+void TIM1_CAPT_handler(void) __attribute__((signal));
+void TIM1_COMPA_handler(void) __attribute__((signal));
+void TIM1_COMPB_handler(void) __attribute__((signal));
+void TIM1_OVF_handler(void) __attribute__((signal));
+void TIM0_COMPA_handler(void) __attribute__((signal));
+void TIM0_COMPB_handler(void) __attribute__((signal));
+void TIM0_OVF_handler(void) __attribute__((signal));
+void SPI_STC_handler(void) __attribute__((signal));
+void USART_RX_handler(void) __attribute__((signal));
+void USART_UDRE_handler(void) __attribute__((signal));
+void USART_TX_handler(void) __attribute__((signal));
+void ADC_handler(void) __attribute__((signal));
+void EE_READY_handler(void) __attribute__((signal));
+void AN_COMP_handler(void) __attribute__((signal));
+void TWI_handler(void) __attribute__((signal));
+void SPM_READY_handler(void) __attribute__((signal));
+
+void default_handler(void){
+    return;
 };
 
-void INT0_isr(){
+FuncPtr interrupts[25] = {
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler,
+    default_handler
+};
+
+void INT0_handler(void){
     interrupts[0]();
-}
-void INT1_isr(){
+};
+void INT1_handler(void){
     interrupts[1]();
-}
-void PCINT0_isr(){
+};
+void PCINT0_handler(void){
     interrupts[2]();
-}
-void PCINT1_isr(){
+};
+void PCINT1_handler(void){
     interrupts[3]();
-}
-void PCINT2_isr(){
+};
+void PCINT2_handler(void){
     interrupts[4]();
-}
-void WDT_isr(){
+};
+void WDT_handler(void){
     interrupts[5]();
-}
-void TIM2_COMPA_isr(){
+};
+void TIM2_COMPA_handler(void){
     interrupts[6]();
-}
-void TIM2_COMPB_isr(){
+};
+void TIM2_COMPB_handler(void){
     interrupts[7]();
-}
-void TIM2_OVF_isr(){
+};
+void TIM2_OVF_handler(void){
     interrupts[8]();
-}
-void TIM1_CAPT_isr(){
+};
+void TIM1_CAPT_handler(void){
     interrupts[9]();
-}
-void TIM1_COMPA_isr(){
+};
+void TIM1_COMPA_handler(void){
     interrupts[10]();
-}
-void TIM1_COMPB_isr(){
+};
+void TIM1_COMPB_handler(void){
     interrupts[11]();
-}
-void TIM1_OVF_isr(){
+};
+void TIM1_OVF_handler(void){
     interrupts[12]();
-}
-void TIM0_COMPA_isr(){
+};
+void TIM0_COMPA_handler(void){
     interrupts[13]();
-}
-void TIM0_COMPB_isr(){
+};
+void TIM0_COMPB_handler(void){
     interrupts[14]();
-}
-void TIM0_OVF_isr(){
+};
+void TIM0_OVF_handler(void){
     interrupts[15]();
-}
-void SPI_STC_isr(){
+};
+void SPI_STC_handler(void){
     interrupts[16]();
-}
-void USART_RX_isr(){
+};
+void USART_RX_handler(void){
     interrupts[17]();
-}
-void USART_UDRE_isr(){
+};
+void USART_UDRE_handler(void){
     interrupts[18]();
-}
-void USART_TX_isr(){
+};
+void USART_TX_handler(void){
     interrupts[19]();
-}
-void ADC_isr(){
+};
+void ADC_handler(void){
     interrupts[20]();
-}
-void EE_READY_isr(){
+};
+void EE_READY_handler(void){
     interrupts[21]();
-}
-void AN_COMP_isr(){
+};
+void AN_COMP_handler(void){
     interrupts[22]();
-}
-void TWI_isr(){
+};
+void TWI_handler(void){
     interrupts[23]();
-}
-void SPM_READY_isr(){
+};
+void SPM_READY_handler(void){
     interrupts[24]();
-}
+};
+
 

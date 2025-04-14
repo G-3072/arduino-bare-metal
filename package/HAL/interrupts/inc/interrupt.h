@@ -42,6 +42,10 @@ typedef enum{
 
 typedef void (*FuncPtr)(void);
 
+void default_handler(void);
+
+extern FuncPtr interrupts[25];
+
 void interruptAttach(FuncPtr function, uint8_t interrupt);
 
 void enableGlobalInterrupts();

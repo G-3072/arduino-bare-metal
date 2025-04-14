@@ -2,112 +2,76 @@
 
 .global __vectors               ; declare vector table as global label
 
+.global default_handler, Reset_Handler
+.weak default_handler, Reset_Handler
+
+default_handler:
+    reti            ;do anothing and return
+
+.global INT0_handler, INT1_handler, PCINT0_handler, PCINT1_handler, PCINT2_handler
+.weak INT0_handler, INT1_handler, PCINT0_handler, PCINT1_handler, PCINT2_handler
+.set INT0_handler, defaukt_handler
+.global WDT_handler
+.weak WDT_handler
+
+.global TIM2_COMPA_handler, TIM2_COMPB_handler, TIM2_OVF_handler
+.weak TIM2_COMPA_handler, TIM2_COMPB_handler, TIM2_OVF_handler
+
+.global TIM1_CAPT_handler, TIM1_COMPA_handler, TIM1_COMPB_handler, TIM1_OVF_handler
+.weak TIM1_CAPT_handler, TIM1_COMPA_handler, TIM1_COMPB_handler, TIM1_OVF_handler
+
+.global TIM0_COMPA_handler, TIM0_COMPB_handler, TIM0_OVF_handler
+.weak TIM0_COMPA_handler, TIM0_COMPB_handler, TIM0_OVF_handler
+
+.global SPI_STC_handler
+.weak SPI_STC_handler
+
+.global USART_RX_handler, USART_TX_handler, USART_UDRE_handler
+.weak USART_RX_handler, USART_TX_handler, USART_UDRE_handler
+
+.global ADC_handler
+.weak ADC_handler
+
+.global EE_READY_handler
+.weak EE_READY_handler
+
+.global AN_COMP_handler
+.weak AN_COMP_handler
+
+.global TWI_handler
+.weak TWI_handler
+
+.global SPM_READY_handler
+.weak SPM_READY_handler
+
 __vectors:                      ; vector table
     .org 0x00                   ; set starting point of vector table at address 0x00 (as per refernce manual)
     rjmp Reset_Handler          ; Reset vector 
-    rjmp INT0_isr
-    rjmp INT1_isr
-    rjmp PCINT0_isr
-    rjmp PCINT1_isr
-    rjmp PCINT2_isr
-    rjmp WDT_isr
-    rjmp TIM2_COMPA_isr
-    rjmp TIM2_COMPB_isr
-    rjmp TIM2_OVF_isr
-    rjmp TIM1_CAPT_isr
-    rjmp TIM1_COMPA_isr
-    rjmp TIM1_COMPB_isr
-    rjmp TIM1_OVF_isr
-    rjmp TIM0_COMPA_isr
-    rjmp TIM0_COMPB_isr
-    rjmp TIM0_OVF_isr
-    rjmp SPI_STC_isr
-    rjmp USART_RX_isr
-    rjmp USART_UDRE_isr
-    rjmp USART_TX_isr
-    rjmp ADC_isr
-    rjmp EE_READY_isr
-    rjmp AN_COMP_isr
-    rjmp TWI_isr
-    rjmp SPM_READY_isr
-
-.global default_handler
-.weak default_handler
-
-.weak INT0_isr
-.global INT0_isr
-
-.weak INT1_isr
-.global INT1_isr
-
-.weak PCINT0_isr
-.global PCINT0_isr
-
-.weak PCINT1_isr
-.global PCINT1_isr
-
-.weak PCINT2_isr
-.global PCINT2_isr
-
-.weak WDT_isr
-.global WDT_isr
-
-.weak TIM2_COMPA_isr
-.global TIM2_COMPA_isr
-
-.weak TIM2_COMPB_isr
-.global TIM2_COMPB_isr
-
-.weak TIM2_OVF_isr
-.global TIM2_OVF_isr
-
-.weak TIM1_CAPT_isr
-.global TIM1_CAPT_isr
-
-.weak TIM1_COMPA_isr
-.global TIM1_COMPA_isr
-
-.weak TIM1_COMPB_isr
-.global TIM1_COMPB_isr
-
-.weak TIM1_OVF_isr
-.global TIM1_OVF_isr
-
-.weak TIM0_COMPA_isr
-.global TIM0_COMPA_isr
-
-.weak TIM0_COMPB_isr
-.global TIM0_COMPB_isr
-
-.weak TIM0_OVF_isr
-.global TIM0_OVF_isr
-
-.weak SPI_STC_isr
-.global SPI_STC_isr
-
-.weak USART_RX_isr
-.global USART_RX_isr
-
-.weak USART_UDRE_isr
-.global USART_UDRE_isr
-
-.weak USART_TX_isr
-.global USART_TX_isr
-
-.weak ADC_isr
-.global ADC_isr
-
-.weak EE_READY_isr
-.global EE_READY_isr
-
-.weak AN_COMP_isr
-.global AN_COMP_isr
-
-.weak TWI_isr
-.global TWI_isr
-
-.weak SPM_READY_isr
-.global SPM_READY_isr
+    rjmp INT0_handler
+    rjmp INT1_handler
+    rjmp PCINT0_handler
+    rjmp PCINT1_handler
+    rjmp PCINT2_handler
+    rjmp WDT_handler
+    rjmp TIM2_COMPA_handler
+    rjmp TIM2_COMPB_handler
+    rjmp TIM2_OVF_handler
+    rjmp TIM1_CAPT_handler
+    rjmp TIM1_COMPA_handler
+    rjmp TIM1_COMPB_handler
+    rjmp TIM1_OVF_handler
+    rjmp TIM0_COMPA_handler
+    rjmp TIM0_COMPB_handler
+    rjmp TIM0_OVF_handler
+    rjmp SPI_STC_handler
+    rjmp USART_RX_handler
+    rjmp USART_UDRE_handler
+    rjmp USART_TX_handler
+    rjmp ADC_handler
+    rjmp EE_READY_handler
+    rjmp AN_COMP_handler
+    rjmp TWI_handler
+    rjmp SPM_READY_handler
 
 .section .text, "ax"        ; "ax" = a: section is allocatable x: contains executable code
 
@@ -189,3 +153,5 @@ Reset_Handler:
     
     infiniteLoop:               ; infinite loop to catch program should it return from main
     rjmp infiniteLoop
+
+

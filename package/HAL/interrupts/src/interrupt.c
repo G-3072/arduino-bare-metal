@@ -1,4 +1,60 @@
 #include <interrupt.h>
+
+
+/**
+ * @brief 
+ * 
+ */
+void enableGlobalInterrupts(){
+    SREG |= (1<<7);
+}
+/**
+ * @brief 
+ * 
+ */
+void disableGlobalInterrupts(){
+    SREG &= ~(1<<7);
+}
+/**
+ * @brief
+ * 
+ * @param function 
+ * @param interrupt 
+ */
+void interruptAttach(FuncPtr function, uint8_t interrupt){
+    interrupts[interrupt] = function;
+}
+/**
+ * @brief 
+ * 
+ * @param port 
+ * @param pin 
+ */
+void enablePinChangeInterrupt(GPIO_Port *port, uint8_t pin){
+    if(port == GPIOB){
+        PCMSK0 |= (1<<pin);
+    }else if(port == GPIOC){
+        PCMSK1 |= (1<<pin);
+    }else if (port == GPIOD){
+        PCMSK2 |= (1<<pin);
+    }
+}
+/**
+ * @brief 
+ * 
+ * @param port 
+ * @param pin 
+ */
+void disablePinChangeInterrupt(GPIO_Port *port, uint8_t pin){
+    if(port == GPIOB){
+        PCMSK0 &= ~(1<<pin);
+    }else if(port == GPIOC){
+        PCMSK1 &= ~(1<<pin);
+    }else if (port == GPIOD){
+        PCMSK2 &= ~(1<<pin);
+    }
+}
+
 /**
  * @brief 
  * 
