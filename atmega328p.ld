@@ -11,9 +11,14 @@ SECTIONS
 {
     .text :
     {
-        __text_start = .;
         *(.vectors)
         KEEP(*(.vectors))
+
+        *(.interrupt_handlers)
+        KEEP(*(.interrupt_handlers))
+
+        . = ALIGN(2);
+        __text_start = .;
 
         *(.text)
         . = ALIGN(2);
@@ -26,19 +31,17 @@ SECTIONS
 
     .data :
     {
-        __data_load_start = LOADADDR(.data);  /* symbols needed for compiler optimizations */
+        
         . = ALIGN(2);
         __data_start = .;   /* symbols needed for compiler optimizations */
 
         *(.data)
         *(.data.*)
 
-        *(.rodata)          /* in data section because its said to put here in avr5.x */
-        *(.rodata*)
-
         . = ALIGN(2);
         __data_end = .;     /* symbols needed for compiler optimizations */
     } >RAM AT> FLASH
+    __data_load_start = LOADADDR(.data);  /* symbols needed for compiler optimizations */
 
     .bss : 
     {
