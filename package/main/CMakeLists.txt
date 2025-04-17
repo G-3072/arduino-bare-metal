@@ -4,6 +4,7 @@ add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
     src/main.c
+    ${CMAKE_SOURCE_DIR}/package/HAL/interrupts/src/atmega328p_interrupts.c
     src/startup_atmega328p.S
 )
 

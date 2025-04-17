@@ -30,7 +30,10 @@
         "iom328p.h": "c",
         "gpio.h": "c",
         "interrupt.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "registers.h": "c",
+        "sfr_defs.h": "c",
+        "usart.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

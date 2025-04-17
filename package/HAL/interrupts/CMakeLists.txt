@@ -4,7 +4,7 @@ add_library(${TARGET_NAME} STATIC)
 
 target_sources(${TARGET_NAME} PRIVATE
     src/interrupt.c
-    src/interrupt_base.c
+    # src/interrupt_base.c
 
 )
 

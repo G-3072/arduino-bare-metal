@@ -1,26 +1,20 @@
-#include <util/delay.h>
 #include <gpio.h>
 #include <registers.h>
 #include <interrupt.h>
-// #include <gpio_test.h>
+#include <usart.h>
+#include <util/delay.h>
 
-void test(void);
+volatile uint8_t intFlag = 0;
 
-void main(void){
-
-    interruptAttach(test, PCINT0);
-    GPIO_setPinMode(GPIOB, 5, OUTPUT);
-    
-    while(1){
-        GPIO_togglePin(GPIOB, 5);
-        _delay_ms(250);
-    }
+void TIMER1_OVF_ISR(void){
+    intFlag = 1;
 }
 
-void test(void){
+void main(void){
+    USART_init();
 
-    uint8_t a;
-    a += 5;
-
-    return;
+    while(1){
+        USART_send("test\n");
+        _delay_ms(500);
+    }
 }
